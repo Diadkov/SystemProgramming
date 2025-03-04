@@ -1,0 +1,154 @@
+#pragma once
+#include <windows.h>
+#include <string>
+#include <iostream>
+
+int main() {
+    // Create a new console
+    AllocConsole();
+
+    // Retrieve the console handles for output and input
+    HANDLE hConsoleOutput = GetStdHandle(STD_OUTPUT_HANDLE);
+    HANDLE hConsoleInput = GetStdHandle(STD_INPUT_HANDLE);
+
+    std::string symbol;
+
+    // Line 1: 60 spaces, then LF and CR
+    symbol.append(60, ' ');
+    symbol.append("\n\r");
+
+    // Line 2: 19 spaces, 26 characters with code 219, 19 spaces, then LF and CR
+    symbol.append(19, ' ');
+    symbol.append(26, char(219));
+    symbol.append(19, ' ');
+    symbol.append("\n\r");
+
+    // Line 3
+    symbol.append(17, ' ');
+    symbol.append(2, char(219));
+    symbol.append(7, char(176));
+    symbol.append(2, char(219));
+    symbol.append(8, ' ');
+    symbol.append(2, char(219));
+    symbol.append(7, char(176));
+    symbol.append(2, char(219));
+    symbol.append(17, ' ');
+    symbol.append("\n\r");
+
+    // Line 4
+    symbol.append(15, ' ');
+    symbol.append(2, char(219));
+    symbol.append(7, char(176));
+    symbol.append(2, char(219));
+    symbol.append(12, ' ');
+    symbol.append(2, char(219));
+    symbol.append(7, char(176));
+    symbol.append(2, char(219));
+    symbol.append(15, ' ');
+    symbol.append("\n\r");
+
+    // Line 5
+    symbol.append(13, ' ');
+    symbol.append(2, char(219));
+    symbol.append(7, char(176));
+    symbol.append(2, char(219));
+    symbol.append(16, ' ');
+    symbol.append(2, char(219));
+    symbol.append(7, char(176));
+    symbol.append(2, char(219));
+    symbol.append(13, ' ');
+    symbol.append("\n\r");
+
+    // Line 6
+    symbol.append(11, ' ');
+    symbol.append(2, char(219));
+    symbol.append(7, char(176));
+    symbol.append(2, char(219));
+    symbol.append(20, ' ');
+    symbol.append(2, char(219));
+    symbol.append(7, char(176));
+    symbol.append(2, char(219));
+    symbol.append(10, ' ');
+    symbol.append("\n\r");
+
+    // Line 7:
+    symbol.append(9, ' ');
+    symbol.append(2, char(219));
+    symbol.append(7, char(176));
+    symbol.append(2, char(219));
+    symbol.append(24, ' ');
+    symbol.append(2, char(219));
+    symbol.append(7, char(176));
+    symbol.append(2, char(219));
+    symbol.append(9, ' ');
+    symbol.append("\n\r");
+
+    // Line 8
+    symbol.append(11, ' ');
+    symbol.append(2, char(219));
+    symbol.append(7, char(176));
+    symbol.append(2, char(219));
+    symbol.append(20, ' ');
+    symbol.append(2, char(219));
+    symbol.append(7, char(176));
+    symbol.append(2, char(219));
+    symbol.append(11, ' ');
+    symbol.append("\n\r");
+
+    // Line 9
+    symbol.append(13, ' ');
+    symbol.append(2, char(219));
+    symbol.append(7, char(176));
+    symbol.append(2, char(219));
+    symbol.append(16, ' ');
+    symbol.append(2, char(219));
+    symbol.append(7, char(176));
+    symbol.append(2, char(219));
+    symbol.append(13, ' ');
+    symbol.append("\n\r");
+
+    // Line 10
+    symbol.append(15, ' ');
+    symbol.append(2, char(219));
+    symbol.append(7, char(176));
+    symbol.append(2, char(219));
+    symbol.append(12, ' ');
+    symbol.append(2, char(219));
+    symbol.append(7, char(176));
+    symbol.append(2, char(219));
+    symbol.append(15, ' ');
+    symbol.append("\n\r");
+
+    // Line 11
+    symbol.append(17, ' ');
+    symbol.append(2, char(219));
+    symbol.append(7, char(176));
+    symbol.append(2, char(219));
+    symbol.append(8, ' ');
+    symbol.append(2, char(219));
+    symbol.append(7, char(176));
+    symbol.append(2, char(219));
+    symbol.append(17, ' ');
+    symbol.append("\n\r");
+
+    // Line 12: 19 spaces, 26 characters with code 219, 19 spaces, CR and LF (different order)
+    symbol.append(19, ' ');
+    symbol.append(26, char(219));
+    symbol.append(19, ' ');
+    symbol.append("\r\n");
+
+    // Line 13
+    symbol.append(60, ' ');
+    symbol.append("\n\r");
+
+
+    DWORD NumberOfCharsWritten;
+    WriteConsoleA(hConsoleOutput, symbol.c_str(), static_cast<DWORD>(symbol.size()), &NumberOfCharsWritten, NULL);
+
+    char ReadBuf[128] = { 0 };
+    DWORD NumberOfCharsRead;
+    ReadConsoleA(hConsoleInput, ReadBuf, 128, &NumberOfCharsRead, NULL);
+
+    ExitProcess(0);
+    return 0; // This line will never be executed since ExitProcess terminates the process
+}

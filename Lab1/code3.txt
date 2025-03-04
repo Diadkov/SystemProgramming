@@ -1,0 +1,11 @@
+#include <windows.h>
+
+int main()
+{
+	HANDLE hConsoleOutput = GetStdHandle(STD_OUTPUT_HANDLE);
+
+	const char HelloMessage[] = "Hello, world!";
+
+	DWORD NumberOfCharsToWrite;
+	WriteConsoleA(hConsoleOutput, HelloMessage, sizeof(HelloMessage)/sizeof(char), &NumberOfCharsToWrite, NULL);
+}
