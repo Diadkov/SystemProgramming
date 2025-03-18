@@ -1,0 +1,35 @@
+.686
+.model flat, stdcall
+
+option casemap :none
+
+include C:\masm32\include\kernel32.inc 
+include C:\masm32\include\masm32.inc
+
+includelib C:\masm32\lib\kernel32.lib
+includelib C:\masm32\lib\masm32.lib
+includelib C:\masm32\lib\msvcrt.lib
+
+extern printf : proc
+
+.data 
+.code
+    A dw 0123Q, 0ABCh, -9874 ; in octal, hexidecimal ,nagative in decimal,
+    B dw 00A5h, 0AB3Ch
+    Cc dd 512h
+    LBL LABEL BYTE
+    D dt 3.14e
+    D dt 3.14e8
+    E db 11111010b
+    F dq 12356789ABCDEFh
+
+    HelloMessage db 'Hello, world',13,10
+
+
+    main:
+        push offset HelloMessage
+	    call printf
+	    add esp, 4
+
+        invoke ExitProcess, 0
+    end main
